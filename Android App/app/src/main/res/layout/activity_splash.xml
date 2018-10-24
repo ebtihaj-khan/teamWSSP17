@@ -10,7 +10,7 @@
         android:id="@+id/ivSplash"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/splash"
+        android:src="@drawable/localgov"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

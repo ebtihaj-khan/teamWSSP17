@@ -27,6 +27,8 @@ import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,7 @@ public class ViewPagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContext = inflater.getContext();
         View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
+
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         viewPager.setClipToPadding(false);
         viewPager.setPageMargin(5);
@@ -302,5 +305,7 @@ public class ViewPagerFragment extends Fragment {
             return 0.95f;
         }
     }
+
+
 
 }

@@ -1,6 +1,10 @@
 package com.zeeroapps.wssp.Model;
 
+import android.content.Context;
+
 import com.zeeroapps.wssp.utils.Constants;
+
+import java.util.ArrayList;
 
 /**
  * Created by fazalullah on 4/17/17.
@@ -14,6 +18,18 @@ public class ModelComplaints {
     private String cStatus;
     private String cImageUrl;
     private String cDateAndTime;
+
+    public ModelComplaints(String cNumber, String cType, String cDetail, String cAddress, String cStatus, String cImageUrl, String cDateAndTime) {
+        this.cNumber = cNumber;
+        this.cType = cType;
+        this.cDetail = cDetail;
+        this.cAddress = cAddress;
+        this.cStatus = cStatus;
+        this.cImageUrl = cImageUrl;
+        this.cDateAndTime = cDateAndTime;
+    }
+
+
 
     public void setcNumber(String cNumber) {
         this.cNumber = cNumber;

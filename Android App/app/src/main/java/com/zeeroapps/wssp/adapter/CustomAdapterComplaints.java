@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -21,16 +23,20 @@ import com.zeeroapps.wssp.R;
 import com.zeeroapps.wssp.utils.AppController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fazalullah on 4/17/17.
  */
 
-public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterComplaints.ViewHolder> {
+public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterComplaints.ViewHolder>
+        implements Filterable{
 
     String TAG = "MyApp";
     Context mContext;
     ArrayList<ModelComplaints> complaintsList;
+    ArrayList<ModelComplaints> mOriginalValues; // Original Values
+
 
 
     public CustomAdapterComplaints(Context c, ArrayList<ModelComplaints> comps) {
@@ -99,7 +105,7 @@ public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterC
                     ComplaintDetailFragment cdFragment = new ComplaintDetailFragment();
                     cdFragment.setArguments(bundle);
                     ((AppCompatActivity)mContext).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, cdFragment)
+                            .add(R.id.container, cdFragment)
                             .addToBackStack("CDF")
                             .commit();
                 }
@@ -146,4 +152,70 @@ public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterC
         }
     }
 
+    //filter arraylist
+    @Override
+    public Filter getFilter() {
+
+        Filter filter = new Filter() {
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                complaintsList = (ArrayList<ModelComplaints>) results.values; // has the filtered values
+                notifyDataSetChanged();  // notifies the data with new filtered values
+
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
+                ArrayList<ModelComplaints> FilteredArrList = new ArrayList<>();
+
+                if (mOriginalValues == null) {
+                    mOriginalValues = new ArrayList<ModelComplaints>(complaintsList); // saves the original data in mOriginalValues
+                }
+
+                /********
+                 *
+                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
+                 *  else does the Filtering and returns FilteredArrList(Filtered)
+                 *
+                 ********/
+                if (constraint == null || constraint.length() == 0) {
+
+                    // set the Original result to return
+                    results.count = mOriginalValues.size();
+                    results.values = mOriginalValues;
+
+                } else {
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < mOriginalValues.size(); i++) {
+                        String data = mOriginalValues.get(i).getcType();
+                        String data2 = mOriginalValues.get(i).getcStatus();
+                        if (data.toLowerCase().startsWith(constraint.toString())
+                                || data2.toLowerCase().startsWith(constraint.toString())) {
+
+                            FilteredArrList.add(new ModelComplaints(mOriginalValues.get(i).getcType()
+                                    , mOriginalValues.get(i).getcStatus()
+                                    , mOriginalValues.get(i).getcDetail()
+                                    ,mOriginalValues.get(i).getcDateAndTime()
+                                    ,mOriginalValues.get(i).getcAddress()
+                                    ,mOriginalValues.get(i).getcImageUrl()
+                                    ,mOriginalValues.get(i).getcNumber()) );
+
+
+                        }
+                    }
+                    // set the Filtered result to return
+                    results.count = FilteredArrList.size();
+                    results.values = FilteredArrList;
+                }
+                return results;
+            }
+        };
+        return filter;
+    }
+
 }
+

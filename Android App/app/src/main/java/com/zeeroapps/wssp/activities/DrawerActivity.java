@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +21,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.zeeroapps.wssp.fragments.MethodFragment;
 import com.zeeroapps.wssp.fragments.MyComplaintsFragment;
 import com.zeeroapps.wssp.R;
+import com.zeeroapps.wssp.fragments.PieChartFragment;
 import com.zeeroapps.wssp.fragments.ViewPagerFragment;
 import com.zeeroapps.wssp.utils.Constants;
 
@@ -34,7 +39,7 @@ public class DrawerActivity extends AppCompatActivity
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageButton btnMenu;
+    ImageButton btnMenu, pie_chart;
     LinearLayout btnNewComp, btnMyComps, btnCall1334, btnMethod, btnFeedback;
     TextView tvName, tvZone, tvUC, tvNC;
     ImageView ivProfile;
@@ -86,6 +91,7 @@ public class DrawerActivity extends AppCompatActivity
 
     void initUIComponents(){
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+        pie_chart = (ImageButton) findViewById(R.id.search);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -109,6 +115,13 @@ public class DrawerActivity extends AppCompatActivity
         btnMethod.setOnClickListener(this);
 //        btnFeedback.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+        
+        pie_chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeFragment(PieChartFragment.newInstance());
+                }
+        });
 
         setValues();
     }
@@ -136,10 +149,12 @@ public class DrawerActivity extends AppCompatActivity
                 }
                 break;
             case R.id.llNewComplaint:
+                pie_chart.setVisibility(View.INVISIBLE);
                 changeFragment(ViewPagerFragment.newInstance());
                 break;
             case R.id.llMyComplaints:
                 changeFragment(MyComplaintsFragment.newInstance());
+                pie_chart.setVisibility(View.VISIBLE);
                 break;
             case R.id.llCall1334:
                 Bundle bundle = new Bundle();
@@ -149,6 +164,7 @@ public class DrawerActivity extends AppCompatActivity
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel://1334")));
                 break;
             case R.id.llMethod:
+                pie_chart.setVisibility(View.INVISIBLE);
                 changeFragment(MethodFragment.newInstance());
                 break;
             case R.id.tvLogout:
@@ -162,6 +178,10 @@ public class DrawerActivity extends AppCompatActivity
 
     private void logoutUser() {
         spEdit.putString(getString(R.string.spUMobile), null);
+        spEdit.putString("completed", null);
+        spEdit.putString("inprogress", null);
+        spEdit.putString("pending", null);
+        spEdit.putString("userType", null);
         spEdit.commit();
         startActivity(new Intent(DrawerActivity.this, LoginActivity.class));
         finish();
@@ -183,29 +203,9 @@ public class DrawerActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
-
 }

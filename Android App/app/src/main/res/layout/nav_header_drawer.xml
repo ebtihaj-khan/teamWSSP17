@@ -27,7 +27,7 @@
         app:cardCornerRadius="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        app:cardBackgroundColor="#0f90ec">
+        app:cardBackgroundColor="#199423">
         <ImageView
             android:id="@+id/ivProfile"
             android:layout_width="match_parent"
@@ -281,6 +281,6 @@
         android:layout_alignParentBottom="true"
         android:text="Logout | لاگ آوٹ"
         android:textColor="#FFF"
-        android:background="#1e449f"
+        android:background="#FDA729"
         android:textSize="@dimen/text_size_b" />
 </RelativeLayout>
