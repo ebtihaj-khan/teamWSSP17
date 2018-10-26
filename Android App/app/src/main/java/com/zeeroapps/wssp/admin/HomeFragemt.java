@@ -1,6 +1,8 @@
 package com.zeeroapps.wssp.admin;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -53,7 +56,7 @@ public class HomeFragemt extends Fragment {
     AVLoadingIndicatorView avi;
     String all_complaints="0", pending_complaints="0", inprogress_complaints="0",
             completed_complaints="0",
-            overdue_complaints="0";
+            overdue_complaints="0", account_id;
     TextView Tv_all_complaints, Tv_pending_complaints, Tv_inprogress_complaints,
             Tv_completed_complaints, Tv_overdue_complaints;
     PieChart pieChart;
@@ -61,6 +64,7 @@ public class HomeFragemt extends Fragment {
     PieDataSet pieDataSet ;
     PieData pieData ;
     ArrayList<Entry> entries ;
+    SharedPreferences sp;
 
     public HomeFragemt() {
         // Required empty public constructor
@@ -101,6 +105,9 @@ public class HomeFragemt extends Fragment {
         Tv_completed_complaints = (TextView) v.findViewById(R.id.completed);
         Tv_overdue_complaints = (TextView) v.findViewById(R.id.overdue);
 
+        sp = getActivity().getSharedPreferences(getString(R.string.sp), getActivity().MODE_PRIVATE);
+        account_id = sp.getString(getString(R.string.spUID), "");
+
         //adding values to pie chart
         entries = new ArrayList<>();
         PieEntryLabels = new ArrayList<String>();
@@ -112,9 +119,10 @@ public class HomeFragemt extends Fragment {
     }
 
 
-    private void getServerData() {
+    private void getServerData()  {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.Admin_Home, null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.Admin_Home+"account_id="+account_id,
+                null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -141,6 +149,7 @@ public class HomeFragemt extends Fragment {
                                 Tv_inprogress_complaints.setText(inprogress_complaints);
                                 Tv_pending_complaints.setText(pending_complaints);
 
+                                pieChart.getLegend().setEnabled(false);
 
                                 AddValuesToPIEENTRY();
                                 AddValuesToPieEntryLabels();

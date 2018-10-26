@@ -127,13 +127,13 @@ public class MyComplaintsFragment extends Fragment {
                 try {
                 JSONArray jArr = new JSONArray(response);
 
-                    image_path = new String[(jArr.length()) - 1];
-                    c_number = new String[(jArr.length()) - 1];
-                    status = new String[(jArr.length()) - 1];
-                    c_date = new String[(jArr.length()) - 1];
-                    c_detials = new String[(jArr.length()) - 1];
-                    c_types = new String[(jArr.length()) - 1];
-                    address = new String[(jArr.length()) - 1];
+                    image_path = new String[(jArr.length())];
+                    c_number = new String[(jArr.length()) ];
+                    status = new String[(jArr.length()) ];
+                    c_date = new String[(jArr.length()) ];
+                    c_detials = new String[(jArr.length()) ];
+                    c_types = new String[(jArr.length()) ];
+                    address = new String[(jArr.length()) ];
 
 
                     for (int i=0; i<c_number.length; i++ ) {
@@ -150,7 +150,7 @@ public class MyComplaintsFragment extends Fragment {
                     }
 
                     //setting vslue to arrayist
-                    for (int k = 0; k < c_date.length; k++) {
+                    for (int k = 0; k < c_number.length; k++) {
                         ModelComplaints modelComplaints = new ModelComplaints(image_path[k],c_number[k],
                                 status[k],c_date[k],c_detials[k], c_types[k], address[k]);
                         modelComplaints.setcAddress(address[k]);

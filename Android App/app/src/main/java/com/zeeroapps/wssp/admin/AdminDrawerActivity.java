@@ -90,6 +90,7 @@ public class AdminDrawerActivity extends AppCompatActivity
         pendingComlpaints = (LinearLayout) findViewById(R.id.pending);
         inprogressComplaints = (LinearLayout) findViewById(R.id.inprogress);
         overdueComplaints = (LinearLayout) findViewById(R.id.overdue);
+        comlpetedComplaints = (LinearLayout) findViewById(R.id.completed);
 
 
         btnMenu.setOnClickListener(this);
@@ -99,6 +100,7 @@ public class AdminDrawerActivity extends AppCompatActivity
         pendingComlpaints.setOnClickListener(this);
         inprogressComplaints.setOnClickListener(this);
         overdueComplaints.setOnClickListener(this);
+        comlpetedComplaints.setOnClickListener(this);
         
     }
 
@@ -121,16 +123,16 @@ public class AdminDrawerActivity extends AppCompatActivity
                 changeFragment(AllComplaintsFragment.newInstance());
                 break;
             case R.id.pending:
-                changeFragment(AllComplaintsFragment.newInstance());
+                changeFragment(PendingComlpaintsFragment.newInstance());
                 break;
             case R.id.inprogress:
-                changeFragment(AllComplaintsFragment.newInstance());
+                changeFragment(InprogressComlpaintsFragment.newInstance());
                 break;
             case R.id.overdue:
                 changeFragment(AllComplaintsFragment.newInstance());
                 break;
             case R.id.completed:
-                changeFragment(AllComplaintsFragment.newInstance());
+                changeFragment(CompletedComlpaintsFragment.newInstance());
                 break;
             case R.id.tvLogout:
                 logoutUser();
@@ -147,6 +149,7 @@ public class AdminDrawerActivity extends AppCompatActivity
         spEdit.putString("inprogress", null);
         spEdit.putString("pending", null);
         spEdit.putString("userType", null);
+        spEdit.putString("account_id", null);
         spEdit.commit();
         startActivity(new Intent(AdminDrawerActivity.this, LoginActivity.class));
         finish();

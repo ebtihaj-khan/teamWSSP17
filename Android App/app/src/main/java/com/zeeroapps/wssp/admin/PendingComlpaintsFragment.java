@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -19,35 +18,22 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
 import com.wang.avi.AVLoadingIndicatorView;
-import com.zeeroapps.wssp.adapter.AdminCustomAdapterComplaints;
-import com.zeeroapps.wssp.utils.AppController;
-import com.zeeroapps.wssp.utils.JsonParser;
 import com.zeeroapps.wssp.Model.ModelComplaints;
 import com.zeeroapps.wssp.R;
+import com.zeeroapps.wssp.adapter.AdminCustomAdapterComplaints;
 import com.zeeroapps.wssp.adapter.CustomAdapterComplaints;
 import com.zeeroapps.wssp.utils.Constants;
+import com.zeeroapps.wssp.utils.JsonParser;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class AllComplaintsFragment extends Fragment {
+public class PendingComlpaintsFragment extends Fragment {
 
     String TAG = "MyApp", account_id;
     Context mContext;
@@ -65,7 +51,7 @@ public class AllComplaintsFragment extends Fragment {
     private String compNo;
     StringRequest jsonReq;
 
-    public AllComplaintsFragment() {
+    public PendingComlpaintsFragment() {
         // Required empty public constructor
     }
 
@@ -86,7 +72,6 @@ public class AllComplaintsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         compList = new ArrayList<ModelComplaints>();
-
         new GetDataFromServer().execute();
 
 
@@ -111,11 +96,11 @@ public class AllComplaintsFragment extends Fragment {
         return v;
     }
 
-    public static AllComplaintsFragment newInstance() {
+    public static PendingComlpaintsFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        AllComplaintsFragment fragment = new AllComplaintsFragment();
+        PendingComlpaintsFragment fragment = new PendingComlpaintsFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -158,7 +143,7 @@ public class AllComplaintsFragment extends Fragment {
 
                 obj.put("account_id", account_id);
 
-                String str_req = JsonParser.multipartFormRequestForFindFriends(Constants.All_Complaints, "UTF-8", obj, null);
+                String str_req = JsonParser.multipartFormRequestForFindFriends(Constants.Pending_Complaints, "UTF-8", obj, null);
 
                 jsonObj = new JSONObject(str_req);
                 Log.e("JObject", str_req);
@@ -170,8 +155,7 @@ public class AllComplaintsFragment extends Fragment {
 
                 if (server_response.equals("true")) {
 
-
-                    jsonArray = jsonObj.getJSONArray("all_complaints");
+                    jsonArray = jsonObj.getJSONArray("all_pending_complaints");
 
                     JSONObject jObj;
 
@@ -182,6 +166,7 @@ public class AllComplaintsFragment extends Fragment {
                     c_detials = new String[(jsonArray.length()) - 1];
                     c_types = new String[(jsonArray.length()) - 1];
                     address = new String[(jsonArray.length()) - 1];
+
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -199,11 +184,18 @@ public class AllComplaintsFragment extends Fragment {
                             c_types[i] = jObj.getString("c_type");
                             address[i] = jObj.getString("bin_address");
 
+
+
                         }
 
                     }
 
+
+
                 }
+
+
+
 
 
             } catch (Exception e) {
@@ -221,7 +213,7 @@ public class AllComplaintsFragment extends Fragment {
                 avi.hide();
 
                 if (server_response.equals("false")){
-                    Snackbar.make(layoutMain, "Server Error!", Snackbar.LENGTH_LONG).setActionTextColor(Color.RED).show();
+                    Snackbar.make(layoutMain, "No Pending Complaints Found!", Snackbar.LENGTH_LONG).setActionTextColor(Color.RED).show();
                 }
                 else if (server_response.equals("true")){
 
@@ -255,7 +247,6 @@ public class AllComplaintsFragment extends Fragment {
 
         }
     }
-
 
 
     @Override

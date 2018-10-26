@@ -17,5 +17,9 @@ public class Constants {
     public static final String URL_PROFILE_PIC = BuildConfig.END_POINT + "uploads/profile/";
     public static final String URL_SEND_FEEDBACK = BuildConfig.END_POINT + "main/add_comp/feedback";
     public static final String All_Complaints = "http://103.240.220.52/restapi/Admin/all_complaints_list/";
-    public static final String Admin_Home = "http://103.240.220.52/restapi/Admin/all_complaints";
+    public static final String Admin_Home = "http://103.240.220.52/restapi/Admin/all_complaints?";
+    public static final String Pending_Complaints = "http://103.240.220.52/restapi/Admin/all_complaints_pending_list";
+    public static final String Inprogress_Complaints = "http://103.240.220.52/restapi/Admin/all_complaints_inprogress_list";
+    public static final String Completed_Complaints = "http://103.240.220.52/restapi/Admin/all_complaints_completed_list";
+
 }

@@ -182,6 +182,7 @@ public class DrawerActivity extends AppCompatActivity
         spEdit.putString("inprogress", null);
         spEdit.putString("pending", null);
         spEdit.putString("userType", null);
+        spEdit.putString("account_id", null);
         spEdit.commit();
         startActivity(new Intent(DrawerActivity.this, LoginActivity.class));
         finish();

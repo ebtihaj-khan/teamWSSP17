@@ -366,7 +366,7 @@ public class NewComplaintActivity extends Activity {
         district_name = tvDistrict.getText().toString().trim();
         tehsil_name   = tvTehsil.getText().toString().trim();
 
-//        Toast.makeText(this, tehsil_name + "\n" + district_name, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, districtSlug + "\n" + tehsilSlug, Toast.LENGTH_SHORT).show();
 
         if (district_name.equals("Select District")){
             tvDistrict.requestFocus();
@@ -424,6 +424,7 @@ public class NewComplaintActivity extends Activity {
                 params.put("status", "pendingreview");
                 params.put("district_slug", districtSlug);
                 params.put("district_tma_slug", tehsilSlug);
+
                 return params;
             }
         };
@@ -490,7 +491,7 @@ public class NewComplaintActivity extends Activity {
 
                             //get object from json
                             String responseText = response.getString("success");
-                            Log.e("kss", responseText + "");
+                            Log.e("success:", responseText + "");
 
                             for (int p = 0; p < jsonArray.length(); p++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(p);

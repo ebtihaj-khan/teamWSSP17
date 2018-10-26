@@ -1,4 +1,4 @@
-package com.zeeroapps.wssp.fragments;
+package com.zeeroapps.wssp.admin;
 
 
 import android.graphics.Color;
@@ -17,8 +17,7 @@ import com.zeeroapps.wssp.R;
 import com.zeeroapps.wssp.utils.AppController;
 
 
-
-public class ComplaintDetailFragment extends Fragment {
+public class AdminComplaintDetailFragment extends Fragment {
 
     TextView tvNo, tvComplaintStatus, tvComplaintStatusUrdu, tvDandT, tvTypeEng, tvTypeUrdu, tvDetail;
     NetworkImageView ivCImage;
@@ -32,14 +31,14 @@ public class ComplaintDetailFragment extends Fragment {
     String statusListUrdu[] = {"زیر جائزہ", "کام جاری ہے", "مکمّل شدہ"};
     int colorList[] = {Color.RED, Color.parseColor("#ffc200"), Color.parseColor("#FF15762A")};
 
-    public ComplaintDetailFragment() {
+    public AdminComplaintDetailFragment() {
         // Required empty public constructor
     }
 
-    public static ComplaintDetailFragment newInstance() {
+    public static AdminComplaintDetailFragment newInstance() {
         Bundle args = new Bundle();
         
-        ComplaintDetailFragment fragment = new ComplaintDetailFragment();
+        AdminComplaintDetailFragment fragment = new AdminComplaintDetailFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,7 +46,7 @@ public class ComplaintDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_complaint_detail, container, false);
+        View view = inflater.inflate(R.layout.admin_complaint_details, container, false);
         ivCImage = (NetworkImageView) view.findViewById(R.id.ivPreview);
         tvNo = (TextView) view.findViewById(R.id.tvCompNo);
         tvComplaintStatus = (TextView) view.findViewById(R.id.tvCompStatus);

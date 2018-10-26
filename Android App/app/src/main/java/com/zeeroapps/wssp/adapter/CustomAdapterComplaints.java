@@ -105,7 +105,7 @@ public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterC
                     ComplaintDetailFragment cdFragment = new ComplaintDetailFragment();
                     cdFragment.setArguments(bundle);
                     ((AppCompatActivity)mContext).getSupportFragmentManager().beginTransaction()
-                            .add(R.id.container, cdFragment)
+                            .replace(R.id.container, cdFragment)
                             .addToBackStack("CDF")
                             .commit();
                 }
@@ -197,8 +197,8 @@ public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterC
                                 || data2.toLowerCase().startsWith(constraint.toString())) {
 
                             FilteredArrList.add(new ModelComplaints(mOriginalValues.get(i).getcType()
-                                    , mOriginalValues.get(i).getcStatus()
-                                    , mOriginalValues.get(i).getcDetail()
+                                    ,mOriginalValues.get(i).getcStatus()
+                                    ,mOriginalValues.get(i).getcDetail()
                                     ,mOriginalValues.get(i).getcDateAndTime()
                                     ,mOriginalValues.get(i).getcAddress()
                                     ,mOriginalValues.get(i).getcImageUrl()
