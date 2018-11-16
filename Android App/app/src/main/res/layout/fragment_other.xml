@@ -28,7 +28,7 @@
                     android:textSize="@dimen/view_pager_text"
                     android:paddingTop="10dp"
                     android:textColor="#FFF"
-                    android:text="Other"/>
+                    android:text="More Categories"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                     android:textColor="#FFF"
                     android:textSize="@dimen/view_pager_text"
                     android:padding="10dp"
-                    android:text="کوئی اور مسئلہ"/>
+                    android:text="مزید زمرے"/>
 
                 <ImageView
                     android:layout_width="match_parent"

@@ -98,8 +98,11 @@
                 android:textSize="@dimen/text_size_b" />
 
             <TextView
+                android:drawableRight="@drawable/dropdown"
                 android:id="@+id/tvUC"
-                android:layout_width="match_parent"
+                android:drawablePadding="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
@@ -115,11 +118,14 @@
 
             <TextView
                 android:id="@+id/tvNC"
-                android:layout_width="match_parent"
+                android:drawableRight="@drawable/dropdown"
+                android:drawablePadding="5dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="Select Tehsil"
+                android:text="Select Tehsil  "
                 android:textColor="@color/clr_wssp_blue"
                 android:textSize="@dimen/text_size_b"
                 android:textStyle="normal" />

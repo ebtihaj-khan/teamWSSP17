@@ -142,6 +142,7 @@
                         android:textSize="@dimen/text_size_b" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tvZone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -152,6 +153,7 @@
                         android:textSize="@dimen/text_size_b" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tvUC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -162,6 +164,7 @@
                         android:textSize="@dimen/text_size_b" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tvNC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

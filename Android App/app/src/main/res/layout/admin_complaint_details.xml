@@ -1,11 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_new_complaint"
+    android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
     tools:context="com.zeeroapps.wssp.activities.NewComplaintActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -14,7 +26,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         app:cardCornerRadius="@dimen/cardview_corners">
 
         <RelativeLayout
@@ -64,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/logo_green" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -134,7 +146,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="5dp"
                         android:gravity="left"
-                        android:text="Complaint Status \n شکایت کی موجودہ حالت"
+                        android:text="Current Status \n شکایت کی موجودہ حالت"
                         android:textSize="@dimen/text_size_b" />
 
                     <android.support.v7.widget.CardView
@@ -144,9 +156,11 @@
                         app:cardCornerRadius="10dp"
                         android:layout_alignParentRight="true">
 
+
+
                         <TextView
                             android:id="@+id/tvCompStatus"
-                            android:layout_width="120dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:gravity="center"
@@ -170,6 +184,45 @@
                     </android.support.v7.widget.CardView>
 
                 </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="Change Status \n شکایت کی حالت تبدیل کریں"
+                        android:textSize="@dimen/text_size_b" />
+
+                    <android.support.v7.widget.CardView
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        android:layout_alignParentRight="true">
+
+                        <Spinner
+                            android:id="@+id/spinner_status"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+
+                        </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -202,10 +255,40 @@
 
                 </LinearLayout>
 
+
+                <Button
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:background="@color/colorAccent"
+                    android:textAllCaps="false"
+                    android:layout_margin="10dp"
+                    android:layout_width="250dp"
+                    android:layout_height="40dp"
+                    android:text="Update Status"
+                    android:id="@+id/update"/>
+
+
             </LinearLayout>
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+    </ScrollView>
+
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loadingIndicator"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        app:indicatorColor="@color/clr_wssp_blue"
+        app:indicatorName="BallTrianglePathIndicator" />
+
+
+
 
 </RelativeLayout>

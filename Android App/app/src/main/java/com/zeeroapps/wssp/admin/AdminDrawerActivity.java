@@ -129,7 +129,7 @@ public class AdminDrawerActivity extends AppCompatActivity
                 changeFragment(InprogressComlpaintsFragment.newInstance());
                 break;
             case R.id.overdue:
-                changeFragment(AllComplaintsFragment.newInstance());
+                changeFragment(OverDueComlpaintsFragment.newInstance());
                 break;
             case R.id.completed:
                 changeFragment(CompletedComlpaintsFragment.newInstance());

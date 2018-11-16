@@ -23,7 +23,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zeeroapps.wssp.Model.ModelComplaints;
 import com.zeeroapps.wssp.R;
 import com.zeeroapps.wssp.adapter.AdminCustomAdapterComplaints;
-import com.zeeroapps.wssp.adapter.CustomAdapterComplaints;
 import com.zeeroapps.wssp.utils.Constants;
 import com.zeeroapps.wssp.utils.JsonParser;
 
@@ -33,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class CompletedComlpaintsFragment extends Fragment {
+public class OverDueComlpaintsFragment extends Fragment {
 
     String TAG = "MyApp", account_id;
     Context mContext;
@@ -52,7 +51,7 @@ public class CompletedComlpaintsFragment extends Fragment {
     private String compNo;
     StringRequest jsonReq;
 
-    public CompletedComlpaintsFragment() {
+    public OverDueComlpaintsFragment() {
         // Required empty public constructor
     }
 
@@ -98,11 +97,11 @@ public class CompletedComlpaintsFragment extends Fragment {
         return v;
     }
 
-    public static CompletedComlpaintsFragment newInstance() {
+    public static OverDueComlpaintsFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        CompletedComlpaintsFragment fragment = new CompletedComlpaintsFragment();
+        OverDueComlpaintsFragment fragment = new OverDueComlpaintsFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -145,7 +144,7 @@ public class CompletedComlpaintsFragment extends Fragment {
 
                 obj.put("account_id", account_id);
 
-                String str_req = JsonParser.multipartFormRequestForFindFriends(Constants.Completed_Complaints, "UTF-8", obj, null);
+                String str_req = JsonParser.multipartFormRequestForFindFriends(Constants.OverDue_Complaints, "UTF-8", obj, null);
 
                 jsonObj = new JSONObject(str_req);
                 Log.e("JObject", str_req);
@@ -157,17 +156,17 @@ public class CompletedComlpaintsFragment extends Fragment {
 
                 if (server_response.equals("true")) {
 
-                    jsonArray = jsonObj.getJSONArray("all_completed_complaints");
+                    jsonArray = jsonObj.getJSONArray("over_due_complaints");
 
                     JSONObject jObj;
 
-                    image_path = new String[(jsonArray.length()) - 1];
-                    c_number = new String[(jsonArray.length()) - 1];
-                    status = new String[(jsonArray.length()) - 1];
-                    c_date = new String[(jsonArray.length()) - 1];
-                    c_detials = new String[(jsonArray.length()) - 1];
-                    c_types = new String[(jsonArray.length()) - 1];
-                    address = new String[(jsonArray.length()) - 1];
+                    image_path = new String[(jsonArray.length()) ];
+                    c_number = new String[(jsonArray.length()) ];
+                    status = new String[(jsonArray.length()) ];
+                    c_date = new String[(jsonArray.length()) ];
+                    c_detials = new String[(jsonArray.length()) ];
+                    c_types = new String[(jsonArray.length()) ];
+                    address = new String[(jsonArray.length()) ];
 
 
 
@@ -215,7 +214,7 @@ public class CompletedComlpaintsFragment extends Fragment {
                 avi.hide();
 
                 if (server_response.equals("false")){
-                    Snackbar.make(layoutMain, "No Completed Complaints Found!", Snackbar.LENGTH_LONG).setActionTextColor(Color.RED).show();
+                    Snackbar.make(layoutMain, "No Pending Complaints Found!", Snackbar.LENGTH_LONG).setActionTextColor(Color.RED).show();
                 }
                 else if (server_response.equals("true")){
 

@@ -3,6 +3,8 @@ package com.zeeroapps.wssp.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,12 +41,18 @@ import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.IconPageIndicator;
 import com.zeeroapps.wssp.R;
 import com.zeeroapps.wssp.activities.NewComplaintActivity;
+import com.zeeroapps.wssp.activities.SplashActivity;
+import com.zeeroapps.wssp.admin.AdminDrawerActivity;
+import com.zeeroapps.wssp.admin.CompletedComlpaintsFragment;
 import com.zeeroapps.wssp.services.MyLocation;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.content.Context.ALARM_SERVICE;
 
 
 /**
@@ -113,9 +121,18 @@ public class ViewPagerFragment extends Fragment {
         if (checkAndRequestPermissions()) {
             MyLocation myLocation = new MyLocation(mContext);
             if (myLocation.canGetLocation()) {
-                Intent intent = new Intent(mContext, NewComplaintActivity.class);
-                intent.putExtra("selected_item", viewPager.getCurrentItem());
-                startActivity(intent);
+
+                if(viewPager.getCurrentItem() == 4){
+                    MoreCategoriesFragment moreCategoriesFragment = new MoreCategoriesFragment();
+                    (getActivity()).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, moreCategoriesFragment)
+                            .addToBackStack("CDF")
+                            .commit();
+                }else {
+                    Intent intent = new Intent(mContext, NewComplaintActivity.class);
+                    intent.putExtra("selected_item", viewPager.getCurrentItem());
+                    startActivity(intent);
+                }
             } else {
                 myLocation.showSettingsAlert();
             }
@@ -284,7 +301,7 @@ public class ViewPagerFragment extends Fragment {
                     title = "Garbage";
                     break;
                 case 4:
-                    title = "Other";
+                    title = "More";
                     break;
                 default:
                     title = "";

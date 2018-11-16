@@ -210,9 +210,15 @@ public class NewComplaintActivity extends Activity {
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
             int i = intent.getExtras().getInt("selected_item");
-            complaintType = complaintTypeList[i];
-            tvType.setText(complaintType);
-            tvTypeUrdu.setText(complaintTypeListUrdu[i]);
+            String complaint_Type = intent.getExtras().getString("complaintType");
+            if (i == 404){
+                tvType.setText(complaint_Type);
+            }else {
+                complaintType = complaintTypeList[i];
+                tvType.setText(complaintType);
+                tvTypeUrdu.setText(complaintTypeListUrdu[i]);
+            }
+
         }
 
 //        tvDistrict.setText("Union Council "+sp.getString(getString(R.string.spUC), null));
@@ -366,7 +372,6 @@ public class NewComplaintActivity extends Activity {
         district_name = tvDistrict.getText().toString().trim();
         tehsil_name   = tvTehsil.getText().toString().trim();
 
-        Toast.makeText(this, districtSlug + "\n" + tehsilSlug, Toast.LENGTH_SHORT).show();
 
         if (district_name.equals("Select District")){
             tvDistrict.requestFocus();
@@ -404,7 +409,6 @@ public class NewComplaintActivity extends Activity {
                 if (error.toString().contains("NoConnectionError")) {
                     Snackbar.make(llMain, "Internet Not Available!", Snackbar.LENGTH_LONG).show();
                 } else {
-                    Snackbar.make(llMain, "Server not responding!", Snackbar.LENGTH_LONG).show();
                 }
                 btnSubmit.setEnabled(true);
             }

@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="com.zeeroapps.wssp.activities.LoginActivity">
+    tools:context="com.zeeroapps.wssp.activities.SignupActivity">
+
+
+
+    <ScrollView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,23 +30,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:src="@drawable/localgov" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="@dimen/text_size_b"
-            android:text="A project of" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/text_size_b"
-            android:text="Water and Sanitation Services Peshawar" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -45,14 +40,49 @@
             android:layout_marginTop="@dimen/my_margin">
 
             <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name  |  نام"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <EditText
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone Number  |  فون نمبر"
-                android:maxLength="14"
+                android:maxLength="11"
                 android:imeOptions="actionNext"
                 android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email  |  ای میل"
+            android:imeOptions="actionDone"
+            android:maxLength="20"
+            android:inputType="textEmailAddress" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -70,55 +100,57 @@
         </android.support.design.widget.TextInputLayout>
 
 
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address  |  پتہ"
+            android:imeOptions="actionDone"
+             />
+
+        </android.support.design.widget.TextInputLayout>
+
+
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/my_margin"
             android:background="@drawable/round_corners_btn"
-            android:text="Login  |  لاگ ان"
+            android:text="Sign Up  |  سائن اپ"
             android:textSize="@dimen/text_size_b"
             android:textAllCaps="false"
             android:textColor="#fff" />
 
         <TextView
+            android:id="@+id/alreadyRegistered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/my_margin"
             android:gravity="center"
             android:textSize="@dimen/text_size_b"
-            android:onClick="forgotPassword"
-            android:text="Having problem in logging in?" />
+            android:text="Already Registered?" />
 
         <TextView
+            android:id="@+id/alreadyRegistered1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="@dimen/text_size_b"
-            android:onClick="forgotPassword"
-            android:text="لاگ ان ہونے میں کوی مسلہ ہے؟" />
+            android:text="کیاآپ پہلے ہی رجسٹرڈ ہیں؟" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cvHelp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        card_view:cardBackgroundColor="@color/clr_wssp_blue">
 
-        <Button
-            android:id="@+id/btnHelp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:textAllCaps="false"
-            android:background="@color/clr_wssp_blue"
-            android:text="About Clean KP | کلین کے پی کے متعلق"
-            android:textColor="#FFF"
-            android:textSize="@dimen/text_size_b" />
-    </android.support.v7.widget.CardView>
+    </ScrollView>
+
+
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/loadingIndicator"
@@ -128,5 +160,13 @@
         android:visibility="visible"
         app:indicatorColor="@color/clr_wssp_blue"
         app:indicatorName="BallTrianglePathIndicator" />
+
+
+
+
+
+
+
+
 
 </RelativeLayout>

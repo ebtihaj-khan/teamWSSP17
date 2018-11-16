@@ -44,6 +44,7 @@ public class PendingComlpaintsFragment extends Fragment {
     ArrayList<ModelComplaints> compList;
     private String JSON_TAG = "JSON_ARRAY_TAG";
     EditText et_filter;
+    private GetDataFromServer getDataFromServer;
 
     String[] image_path, c_number, status, c_date, c_detials, c_types, address;
 
@@ -59,7 +60,7 @@ public class PendingComlpaintsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = inflater.getContext();
-        compNo = getArguments().getString("COMPLAINT_NUMBER");
+//        compNo = getArguments().getString("COMPLAINT_NUMBER");
         View v = inflater.inflate(R.layout.fragment_all_complaints, container, false);
 
         sp = inflater.getContext().getSharedPreferences(getString(R.string.sp), Context.MODE_PRIVATE);
@@ -72,7 +73,8 @@ public class PendingComlpaintsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         compList = new ArrayList<ModelComplaints>();
-        new GetDataFromServer().execute();
+        getDataFromServer = new GetDataFromServer();
+        getDataFromServer.execute();
 
 
         // Add Text Change Listener to EditText
@@ -252,6 +254,8 @@ public class PendingComlpaintsFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-//        jsonReq.cancel();
+
+        if (getDataFromServer != null && getDataFromServer.getStatus() != AsyncTask.Status.FINISHED)
+            getDataFromServer.cancel(true);
     }
 }

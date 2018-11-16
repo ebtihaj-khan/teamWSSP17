@@ -68,7 +68,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 if (sp.getString(getString(R.string.spUMobile), null) == null) {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this, SignupActivity.class));
                 } else if (sp.getString("userType", null).equals("user")){
                     startActivity(new Intent(SplashActivity.this, DrawerActivity.class));
                 }
