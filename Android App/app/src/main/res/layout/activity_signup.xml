@@ -77,7 +77,6 @@
             android:layout_height="wrap_content"
             android:hint="Email  |  ای میل"
             android:imeOptions="actionDone"
-            android:maxLength="20"
             android:inputType="textEmailAddress" />
 
 

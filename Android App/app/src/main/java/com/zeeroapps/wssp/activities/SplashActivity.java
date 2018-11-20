@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.zeeroapps.wssp.R;
 import com.zeeroapps.wssp.SQLite.DatabaseHelper;
 import com.zeeroapps.wssp.admin.AdminDrawerActivity;
+import com.zeeroapps.wssp.utils.Constants;
 import com.zeeroapps.wssp.utils.DistrictsListGetSet;
 
 import org.json.JSONArray;
@@ -117,7 +118,7 @@ public class SplashActivity extends Activity {
     //server call
     public void getDistrictsData() {
 
-        String urlGetServerData = "http://103.240.220.52/restapi/Districts";
+        String urlGetServerData = Constants.END_POINT+"Districts";
         System.out.print(urlGetServerData);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlGetServerData, null,
@@ -131,7 +132,7 @@ public class SplashActivity extends Activity {
 
                             //get object from json
                             String responseText = response.getString("success");
-                            Log.e("kss", responseText + "");
+                            Log.e("response", responseText + "");
 
                             for (int p = 0; p < jsonArray.length(); p++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(p);
@@ -144,24 +145,22 @@ public class SplashActivity extends Activity {
                             SharedPreferences.Editor editor = sp.edit();
                             String db_version = sp.getString("db_version", "0");
 
+                            rows_count = databaseHelper.getCount();
+
                             if (db_version.equals(districtsArraylist.get(0).getDb_version())) {
 
-                                //get number of total rows
-                                rows_count = databaseHelper.getCount();
                                 Log.e("db_version", "database version matched"+"\n"+ rows_count
                                 +"\tversion=\t\t" + districtsArraylist.get(0).getDb_version());
 
                             } else {
 
+                                Log.e("db_version", "database version not matched");
                                 //check if database is created and version is different then
                                 //delete previous database
                                 if (rows_count > 0) {
                                     databaseHelper.deleteDataFromDistrictTable();
-                                    editor.clear();
-                                    editor.apply();
                                 }
 
-                                Log.e("db_version", "database version not matched");
                                 //Adding values to sharedpreferences
                                 editor.putString("db_version", districtsArraylist.get(0).getDb_version());
                                 editor.apply();

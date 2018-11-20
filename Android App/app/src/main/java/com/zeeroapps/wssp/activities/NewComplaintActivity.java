@@ -18,6 +18,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.LoginFilter;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -211,8 +212,10 @@ public class NewComplaintActivity extends Activity {
         if (intent.getExtras() != null) {
             int i = intent.getExtras().getInt("selected_item");
             String complaint_Type = intent.getExtras().getString("complaintType");
+
             if (i == 404){
                 tvType.setText(complaint_Type);
+                complaintType = tvType.getText().toString();
             }else {
                 complaintType = complaintTypeList[i];
                 tvType.setText(complaintType);
@@ -221,8 +224,6 @@ public class NewComplaintActivity extends Activity {
 
         }
 
-//        tvDistrict.setText("Union Council "+sp.getString(getString(R.string.spUC), null));
-//        tvTehsil.setText("Neighbourhood Council "+sp.getString(getString(R.string.spNC), null));
 
         Long time = System.currentTimeMillis() / 1000;
         complaintID = Long.toString(time, 30).toUpperCase();
@@ -348,6 +349,12 @@ public class NewComplaintActivity extends Activity {
         if (TextUtils.isEmpty(etAddress.getText())) {
             etAddress.requestFocus();
             etAddress.setError("Enter valid Address!");
+            return;
+        }
+
+        if (TextUtils.isEmpty(etDetails.getText())) {
+            etDetails.requestFocus();
+            etDetails.setError("Enter valid Description!");
             return;
         }
 
@@ -481,7 +488,7 @@ public class NewComplaintActivity extends Activity {
     //server call
     public void getDistrictsData() {
 
-        String urlGetServerData = "http://103.240.220.52/restapi/Districts";
+        String urlGetServerData = Constants.END_POINT+"Districts";
         System.out.print(urlGetServerData);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlGetServerData, null,

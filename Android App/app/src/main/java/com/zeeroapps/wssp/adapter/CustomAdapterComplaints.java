@@ -105,7 +105,7 @@ public class CustomAdapterComplaints extends RecyclerView.Adapter<CustomAdapterC
                     ComplaintDetailFragment cdFragment = new ComplaintDetailFragment();
                     cdFragment.setArguments(bundle);
                     ((AppCompatActivity)mContext).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, cdFragment)
+                            .add(R.id.container, cdFragment)
                             .addToBackStack("CDF")
                             .commit();
                 }

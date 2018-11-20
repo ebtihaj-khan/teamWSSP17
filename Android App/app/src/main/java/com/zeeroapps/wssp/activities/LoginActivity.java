@@ -159,7 +159,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        StringRequest jsonReq = new StringRequest(Request.Method.POST, Constants.URL_LOGIN, new Response.Listener<String>() {
+        StringRequest jsonReq = new StringRequest(Request.Method.POST, Constants.URL_LOGIN,
+                new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, response.toString());
@@ -173,14 +174,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                         spEdit.putString(getString(R.string.spUID), jObj.getString("account_id"));
                         spEdit.putString(getString(R.string.spUMobile), jObj.getString("mobilenumber"));
-//                        spEdit.putString(getString(R.string.spUEmail), jObj.getString("emailad"));
-//                        spEdit.putString(getString(R.string.spUPic), jObj.getString("profile_image"));
-//                        spEdit.putString(getString(R.string.spUC), jObj.getString("uc_id"));
-//                        spEdit.putString(getString(R.string.spNC), jObj.getString("nc_id"));
                         spEdit.putString("userType", jObj.getString("user_type"));
 
                         if (jObj.getString("user_type").equals("user")) {
-                            spEdit.putString(getString(R.string.spUName), jObj.getString("user_name"));
+                            spEdit.putString(getString(R.string.spUName), jObj.getString("username"));
                             spEdit.commit();
                             Intent intent = new Intent(LoginActivity.this, DrawerActivity.class);
                             startActivity(intent);

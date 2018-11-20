@@ -69,7 +69,7 @@ public class MoreCategoriesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getActivity(), NewComplaintActivity.class);
-                intent.putExtra("complaintType", model_classArrayList.get(position).getCompaliant_types());
+                intent.putExtra("complaintType", model_classArrayList.get(position).getComplaint_types());
                 intent.putExtra("selected_item", 404);
                 startActivity(intent);
 

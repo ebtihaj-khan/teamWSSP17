@@ -75,12 +75,13 @@ public class Categories_Adapter extends BaseAdapter {
         }
 
 
-        viewholder.title.setText(modelClasses.get(position).getCompaliant_types());
+        viewholder.title.setText(modelClasses.get(position).getComplaint_types());
         Glide.with(context).load(modelClasses.get(position).getImage())
                 .into(viewholder.imageView);
 
 
-        Log.e("imagesURL", modelClasses.get(position).getImage()+"");
+        Log.e("imagesURL", modelClasses.get(position).getComplaint_types()+" "
+        + modelClasses.get(position).getImage());
 
 
 
