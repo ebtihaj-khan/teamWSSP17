@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "411658225162",
+    "firebase_url": "https://st-project-8f37f.firebaseio.com",
+    "project_id": "st-project-8f37f",
+    "storage_bucket": "st-project-8f37f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411658225162:android:323840f1492b5f22",
+        "android_client_info": {
+          "package_name": "com.bilalsabir.realtimedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411658225162-8ob3q0eq6cquke19nnr1317hoiceekj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_3TndM8oviFfRU31UhPQXwsFn4mBQqRA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411658225162:android:fee20bc80f501983",
+        "android_client_info": {
+          "package_name": "d_zone.bilal.firebasenotification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411658225162-8ob3q0eq6cquke19nnr1317hoiceekj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_3TndM8oviFfRU31UhPQXwsFn4mBQqRA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
